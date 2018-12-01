@@ -40,8 +40,8 @@ namespace FututreTech.CFPParser
                     stream.WriteLine("Architect:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupArchitect) ? "Yes" : "No");
                     stream.WriteLine("Management:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupManagement) ? "Yes" : "No");
                     stream.WriteLine("Disruptor:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDisruptor) ? "Yes" : "No");
-                    stream.WriteLine("Expert:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupExpert) ? "Yes" : "No");
-                    stream.WriteLine($"Extra notes session:\t\t{cfp.ExtraNotesSession}");
+                    stream.WriteLine("Expert:\t\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupExpert) ? "Yes" : "No");
+                    stream.WriteLine($"Extra notes session:\t{cfp.ExtraNotesSession}");
                     stream.WriteLine("-------------------------------------------------");
                 }
             }
