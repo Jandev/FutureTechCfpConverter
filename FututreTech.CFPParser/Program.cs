@@ -10,6 +10,17 @@ namespace FututreTech.CFPParser
     {
         static void Main(string[] args)
         {
+            WufooCfps();
+            PapercallCfps();
+        }
+
+        private static void PapercallCfps()
+        {
+            var filePath = @"D:\Temp\futuretech.csv";
+        }
+
+        private static void WufooCfps()
+        {
             var filePath = @"D:\Temp\futuretech.xlsx";
 
             var cfpCollection = GetCfpCollection(filePath);
