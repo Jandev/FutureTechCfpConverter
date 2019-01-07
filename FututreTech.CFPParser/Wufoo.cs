@@ -13,7 +13,7 @@ namespace FututreTech.CFPParser
             var filePath = @"D:\Temp\futuretech.xlsx";
 
             var cfpCollection = GetCfpCollection(filePath);
-            WriteCfpCollectionToTextFile(cfpCollection, @"D:\Temp\FutureTech - CFPs.txt");
+            WriteCfpCollectionToTextFile(cfpCollection, @"D:\Temp\FutureTech - Wufoo CFPs.txt");
         }
 
         private static void WriteCfpCollectionToTextFile(IEnumerable<Model.Excel.Cfp> cfpCollection, string fullPath)

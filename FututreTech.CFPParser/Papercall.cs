@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using FututreTech.CFPParser.Model.Csv;
 using TinyCsvParser;
 using TinyCsvParser.Mapping;
 
@@ -10,12 +14,49 @@ namespace FututreTech.CFPParser
         internal static void ExtractCfps()
         {
             var filePath = @"D:\Temp\futuretech.csv";
+            var cfpCollection = GetCfpCollection(filePath);
+
+            WriteCfpCollectionToTextFile(cfpCollection.Select(c => c.Result), @"D:\Temp\FutureTech - Papercall CFPs.txt");
+        }
+
+        private static List<CsvMappingResult<Cfp>> GetCfpCollection(string filePath)
+        {
             CsvParserOptions csvParserOptions = new CsvParserOptions(false, ',');
             var csvParser = new CsvParser<Model.Csv.Cfp>(csvParserOptions, new CsvPersonMapping());
 
-            var result = csvParser
+            var cfpCollection = csvParser
                 .ReadFromFile(filePath, Encoding.UTF8)
                 .ToList();
+            return cfpCollection;
+        }
+
+        private static void WriteCfpCollectionToTextFile(IEnumerable<Cfp> cfpCollection, string fullPath)
+        {
+            File.Delete(fullPath);
+            using (var stream = File.AppendText(fullPath))
+            {
+                foreach (var cfp in cfpCollection)
+                {
+                    Console.WriteLine($"Processing CFP {cfp.title}.");
+                    stream.WriteLine($"Speaker:\t\t\t\t{cfp.name}");
+                    stream.WriteLine($"Speaker e-mail\t\t\t{cfp.email}");
+                    stream.WriteLine($"Speaker bio:\t{cfp.bio}");
+                    stream.WriteLine($"Speaker location:\t{cfp.location}");
+                    stream.WriteLine($"Twitter:\t\t\t\t\t{cfp.twitter}");
+                    stream.WriteLine($"Url:\t\t\t\t\t{cfp.url}");
+                    stream.WriteLine($"Organization:\t\t\t\t\t{cfp.organization}");
+                    stream.WriteLine($"Title:\t\t\t\t\t{cfp.title}");
+                    stream.WriteLine($"Abstract:\t\t\t{cfp.@abstract}");
+                    stream.WriteLine($"Description:\t\t\t{cfp.description}");
+                    stream.WriteLine($"Audience level:\t\t\t\t{cfp.audience_level}");
+                    stream.WriteLine($"Rating:\t\t\t\t\t{cfp.rating}");
+                    stream.WriteLine($"Type:\t\t\t\t\t{cfp.talk_format}");
+                    stream.WriteLine($"Tags:\t\t\t\t\t{cfp.tags}");
+                    stream.WriteLine($"Extra notes session:\t{cfp.notes}");
+                    stream.WriteLine($"Additional info:\t{cfp.additional_info}");
+                    stream.WriteLine("-------------------------------------------------");
+                }
+            }
         }
 
         private class CsvPersonMapping : CsvMapping<Model.Csv.Cfp>
