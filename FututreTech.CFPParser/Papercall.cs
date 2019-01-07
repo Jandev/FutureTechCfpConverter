@@ -37,23 +37,27 @@ namespace FututreTech.CFPParser
             {
                 foreach (var cfp in cfpCollection)
                 {
+                    if (cfp == null)
+                    {
+                        continue;
+                    }
                     Console.WriteLine($"Processing CFP {cfp.title}.");
                     stream.WriteLine($"Speaker:\t\t\t\t{cfp.name}");
                     stream.WriteLine($"Speaker e-mail\t\t\t{cfp.email}");
-                    stream.WriteLine($"Speaker bio:\t{cfp.bio}");
-                    stream.WriteLine($"Speaker location:\t{cfp.location}");
-                    stream.WriteLine($"Twitter:\t\t\t\t\t{cfp.twitter}");
+                    stream.WriteLine($"Speaker bio:\t\t\t{cfp.bio.Replace("<br>", "\n")}");
+                    stream.WriteLine($"Speaker location:\t\t{cfp.location}");
+                    stream.WriteLine($"Twitter:\t\t\t\t{cfp.twitter}");
                     stream.WriteLine($"Url:\t\t\t\t\t{cfp.url}");
-                    stream.WriteLine($"Organization:\t\t\t\t\t{cfp.organization}");
+                    stream.WriteLine($"Organization:\t\t\t{cfp.organization}");
                     stream.WriteLine($"Title:\t\t\t\t\t{cfp.title}");
-                    stream.WriteLine($"Abstract:\t\t\t{cfp.@abstract}");
-                    stream.WriteLine($"Description:\t\t\t{cfp.description}");
-                    stream.WriteLine($"Audience level:\t\t\t\t{cfp.audience_level}");
+                    stream.WriteLine($"Abstract:\t\t\t\t{cfp.@abstract.Replace("<br>", "\n")}");
+                    stream.WriteLine($"Description:\t\t\t{cfp.description.Replace("<br>", "\n")}");
+                    stream.WriteLine($"Audience level:\t\t\t{cfp.audience_level}");
                     stream.WriteLine($"Rating:\t\t\t\t\t{cfp.rating}");
                     stream.WriteLine($"Type:\t\t\t\t\t{cfp.talk_format}");
                     stream.WriteLine($"Tags:\t\t\t\t\t{cfp.tags}");
-                    stream.WriteLine($"Extra notes session:\t{cfp.notes}");
-                    stream.WriteLine($"Additional info:\t{cfp.additional_info}");
+                    stream.WriteLine($"Extra notes session:\t{cfp.notes.Replace("<br>", "\n")}");
+                    stream.WriteLine($"Additional info:\t\t{cfp.additional_info.Replace("<br>", "\n")}");
                     stream.WriteLine("-------------------------------------------------");
                 }
             }
