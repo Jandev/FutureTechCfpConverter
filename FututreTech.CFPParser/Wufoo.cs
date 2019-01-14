@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ExcelDataReader;
 using FututreTech.CFPParser.Model.Excel;
 
@@ -21,27 +22,27 @@ namespace FututreTech.CFPParser
             File.Delete(fullPath);
             using(var stream = File.AppendText(fullPath))
             {
-                foreach (var cfp in cfpCollection)
+                foreach (var cfp in cfpCollection.OrderBy(c => c.NameContactPerson))
                 {
                     Console.WriteLine($"Processing CFP {cfp.Id}.");
                     stream.WriteLine($"Id:\t\t\t\t\t\t{cfp.Id}");
-                    stream.WriteLine($"Contactperson:\t \t\t{cfp.NameContactPerson}");
-                    stream.WriteLine($"Contactperson e-mail:\t{cfp.EmailContactPerson}");
-                    stream.WriteLine($"Speaker:\t\t\t\t{cfp.Id}");
-                    stream.WriteLine($"Speaker e-mail\t\t\t{cfp.Id}");
-                    stream.WriteLine($"Mobile phonenumber:\t\t{cfp.MobilePhoneSpeaker}");
-                    stream.WriteLine($"Extra notes speaker:\t{cfp.ExtraNotesSpeaker}");
-                    stream.WriteLine($"Title:\t\t\t\t\t{cfp.TitleTalk}");
-                    stream.WriteLine($"Description:\t\t\t{cfp.DescriptionTalk}");
-                    stream.WriteLine($"Type:\t\t\t\t\t{cfp.SessionType}");
-                    stream.WriteLine($"Tracks:\t\t\t\t\t{cfp.Tracks}");
-                    stream.WriteLine($"Difficulty:\t\t\t\t{cfp.Difficulty}");
-                    stream.WriteLine("Developer:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDeveloper) ? "Yes" : "No");
-                    stream.WriteLine("Architect:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupArchitect) ? "Yes" : "No");
-                    stream.WriteLine("Management:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupManagement) ? "Yes" : "No");
-                    stream.WriteLine("Disruptor:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDisruptor) ? "Yes" : "No");
-                    stream.WriteLine("Expert:\t\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupExpert) ? "Yes" : "No");
-                    stream.WriteLine($"Extra notes session:\t{cfp.ExtraNotesSession}");
+                    if(!string.IsNullOrEmpty(cfp.NameContactPerson)) stream.WriteLine($"Contactperson:\t \t\t{cfp.NameContactPerson}"));
+                    if(!string.IsNullOrEmpty(cfp.EmailContactPerson)) stream.WriteLine($"Contactperson e-mail:\t{cfp.EmailContactPerson}");
+                    if(!string.IsNullOrEmpty(cfp.NameSpeaker)) stream.WriteLine($"Speaker:\t\t\t\t{cfp.NameSpeaker}");
+                    if(!string.IsNullOrEmpty(cfp.EmailSpeaker)) stream.WriteLine($"Speaker e-mail\t\t\t{cfp.EmailSpeaker}");
+                    if(!string.IsNullOrEmpty(cfp.MobilePhoneSpeaker)) stream.WriteLine($"Mobile phonenumber:\t\t{cfp.MobilePhoneSpeaker}");
+                    if(!string.IsNullOrEmpty(cfp.ExtraNotesSpeaker)) stream.WriteLine($"Extra notes speaker:\t{cfp.ExtraNotesSpeaker}");
+                    if(!string.IsNullOrEmpty(cfp.TitleTalk)) stream.WriteLine($"Title:\t\t\t\t\t{cfp.TitleTalk}");
+                    if(!string.IsNullOrEmpty(cfp.DescriptionTalk)) stream.WriteLine($"Description:\t\t\t{cfp.DescriptionTalk}");
+                    if(!string.IsNullOrEmpty(cfp.SessionType)) stream.WriteLine($"Type:\t\t\t\t\t{cfp.SessionType}");
+                    if(!string.IsNullOrEmpty(cfp.Tracks)) stream.WriteLine($"Tracks:\t\t\t\t\t{cfp.Tracks}");
+                    if(!string.IsNullOrEmpty(cfp.Difficulty)) stream.WriteLine($"Difficulty:\t\t\t\t{cfp.Difficulty}");
+                    if(!string.IsNullOrEmpty(cfp.TargetGroupDeveloper)) stream.WriteLine("Developer:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDeveloper) ? "Yes" : "No");
+                    if(!string.IsNullOrEmpty(cfp.TargetGroupArchitect)) stream.WriteLine("Architect:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupArchitect) ? "Yes" : "No");
+                    if(!string.IsNullOrEmpty(cfp.TargetGroupManagement)) stream.WriteLine("Management:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupManagement) ? "Yes" : "No");
+                    if(!string.IsNullOrEmpty(cfp.TargetGroupDisruptor)) stream.WriteLine("Disruptor:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDisruptor) ? "Yes" : "No");
+                    if(!string.IsNullOrEmpty(cfp.TargetGroupExpert)) stream.WriteLine("Expert:\t\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupExpert) ? "Yes" : "No");
+                    if (!string.IsNullOrEmpty(cfp.ExtraNotesSession)) stream.WriteLine($"Extra notes session:\t{cfp.ExtraNotesSession}");
                     stream.WriteLine("-------------------------------------------------");
                 }
             }

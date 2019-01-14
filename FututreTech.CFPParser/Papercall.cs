@@ -35,7 +35,7 @@ namespace FututreTech.CFPParser
             File.Delete(fullPath);
             using (var stream = File.AppendText(fullPath))
             {
-                foreach (var cfp in cfpCollection)
+                foreach (var cfp in cfpCollection.OrderBy(c => c?.name))
                 {
                     if (cfp == null)
                     {
@@ -44,20 +44,21 @@ namespace FututreTech.CFPParser
                     Console.WriteLine($"Processing CFP {cfp.title}.");
                     stream.WriteLine($"Speaker:\t\t\t\t{cfp.name}");
                     stream.WriteLine($"Speaker e-mail\t\t\t{cfp.email}");
-                    stream.WriteLine($"Speaker bio:\t\t\t{cfp.bio.Replace("<br>", "\n")}");
-                    stream.WriteLine($"Speaker location:\t\t{cfp.location}");
-                    stream.WriteLine($"Twitter:\t\t\t\t{cfp.twitter}");
-                    stream.WriteLine($"Url:\t\t\t\t\t{cfp.url}");
-                    stream.WriteLine($"Organization:\t\t\t{cfp.organization}");
-                    stream.WriteLine($"Title:\t\t\t\t\t{cfp.title}");
-                    stream.WriteLine($"Abstract:\t\t\t\t{cfp.@abstract.Replace("<br>", "\n")}");
-                    stream.WriteLine($"Description:\t\t\t{cfp.description.Replace("<br>", "\n")}");
-                    stream.WriteLine($"Audience level:\t\t\t{cfp.audience_level}");
-                    stream.WriteLine($"Rating:\t\t\t\t\t{cfp.rating}");
-                    stream.WriteLine($"Type:\t\t\t\t\t{cfp.talk_format}");
-                    stream.WriteLine($"Tags:\t\t\t\t\t{cfp.tags}");
-                    stream.WriteLine($"Extra notes session:\t{cfp.notes.Replace("<br>", "\n")}");
-                    stream.WriteLine($"Additional info:\t\t{cfp.additional_info.Replace("<br>", "\n")}");
+                    if(!string.IsNullOrEmpty(cfp.bio)) stream.WriteLine($"Speaker bio:\t\t\t{cfp.bio.Replace("<br>", "\n")}");
+                    if(!string.IsNullOrEmpty(cfp.location)) stream.WriteLine($"Speaker location:\t\t{cfp.location}");
+                    if (!string.IsNullOrEmpty(cfp.twitter)) stream.WriteLine($"Twitter:\t\t\t\t{cfp.twitter}");
+                    if (!string.IsNullOrEmpty(cfp.url))stream.WriteLine($"Url:\t\t\t\t\t{cfp.url}");
+                    if (!string.IsNullOrEmpty(cfp.organization))stream.WriteLine($"Organization:\t\t\t{cfp.organization}");
+                    if (!string.IsNullOrEmpty(cfp.title))stream.WriteLine($"Title:\t\t\t\t\t{cfp.title}");
+                    if (!string.IsNullOrEmpty(cfp.@abstract))stream.WriteLine($"Abstract:\t\t\t\t{cfp.@abstract.Replace("<br>", "\n")}");
+                    if (!string.IsNullOrEmpty(cfp.description))stream.WriteLine($"Description:\t\t\t{cfp.description.Replace("<br>", "\n")}");
+                    if (!string.IsNullOrEmpty(cfp.audience_level)) stream.WriteLine($"Audience level:\t\t\t{cfp.audience_level}");
+                    if (!string.IsNullOrEmpty(cfp.rating))stream.WriteLine($"Rating:\t\t\t\t\t{cfp.rating}");
+                    if (!string.IsNullOrEmpty(cfp.talk_format))stream.WriteLine($"Type:\t\t\t\t\t{cfp.talk_format}");
+                    if (!string.IsNullOrEmpty(cfp.tags))stream.WriteLine($"Tags:\t\t\t\t\t{cfp.tags}");
+                    if (!string.IsNullOrEmpty(cfp.notes))stream.WriteLine($"Extra notes session:\t{cfp.notes.Replace("<br>", "\n")}");
+                    if (!string.IsNullOrEmpty(cfp.additional_info)) stream.WriteLine($"Additional info:\t\t{cfp.additional_info.Replace("<br>", "\n")}");
+                    stream.WriteLine($"Rating:");
                     stream.WriteLine("-------------------------------------------------");
                 }
             }
