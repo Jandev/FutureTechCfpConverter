@@ -53,7 +53,6 @@ namespace FututreTech.CFPParser
                     if (!string.IsNullOrEmpty(cfp.@abstract))stream.WriteLine($"Abstract:\t\t\t\t{cfp.@abstract.Replace("<br>", "\n")}");
                     if (!string.IsNullOrEmpty(cfp.description))stream.WriteLine($"Description:\t\t\t{cfp.description.Replace("<br>", "\n")}");
                     if (!string.IsNullOrEmpty(cfp.audience_level)) stream.WriteLine($"Audience level:\t\t\t{cfp.audience_level}");
-                    if (!string.IsNullOrEmpty(cfp.rating))stream.WriteLine($"Rating:\t\t\t\t\t{cfp.rating}");
                     if (!string.IsNullOrEmpty(cfp.talk_format))stream.WriteLine($"Type:\t\t\t\t\t{cfp.talk_format}");
                     if (!string.IsNullOrEmpty(cfp.tags))stream.WriteLine($"Tags:\t\t\t\t\t{cfp.tags}");
                     if (!string.IsNullOrEmpty(cfp.notes))stream.WriteLine($"Extra notes session:\t{cfp.notes.Replace("<br>", "\n")}");

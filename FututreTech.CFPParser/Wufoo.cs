@@ -43,6 +43,7 @@ namespace FututreTech.CFPParser
                     if(!string.IsNullOrEmpty(cfp.TargetGroupDisruptor)) stream.WriteLine("Disruptor:\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupDisruptor) ? "Yes" : "No");
                     if(!string.IsNullOrEmpty(cfp.TargetGroupExpert)) stream.WriteLine("Expert:\t\t\t\t\t{0}", !string.IsNullOrWhiteSpace(cfp.TargetGroupExpert) ? "Yes" : "No");
                     if (!string.IsNullOrEmpty(cfp.ExtraNotesSession)) stream.WriteLine($"Extra notes session:\t{cfp.ExtraNotesSession}");
+                    stream.WriteLine($"Rating:");
                     stream.WriteLine("-------------------------------------------------");
                 }
             }
