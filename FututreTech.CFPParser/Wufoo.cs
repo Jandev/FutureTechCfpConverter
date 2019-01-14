@@ -26,7 +26,7 @@ namespace FututreTech.CFPParser
                 {
                     Console.WriteLine($"Processing CFP {cfp.Id}.");
                     stream.WriteLine($"Id:\t\t\t\t\t\t{cfp.Id}");
-                    if(!string.IsNullOrEmpty(cfp.NameContactPerson)) stream.WriteLine($"Contactperson:\t \t\t{cfp.NameContactPerson}"));
+                    if(!string.IsNullOrEmpty(cfp.NameContactPerson)) stream.WriteLine($"Contactperson:\t \t\t{cfp.NameContactPerson}");
                     if(!string.IsNullOrEmpty(cfp.EmailContactPerson)) stream.WriteLine($"Contactperson e-mail:\t{cfp.EmailContactPerson}");
                     if(!string.IsNullOrEmpty(cfp.NameSpeaker)) stream.WriteLine($"Speaker:\t\t\t\t{cfp.NameSpeaker}");
                     if(!string.IsNullOrEmpty(cfp.EmailSpeaker)) stream.WriteLine($"Speaker e-mail\t\t\t{cfp.EmailSpeaker}");
